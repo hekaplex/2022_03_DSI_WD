@@ -6,7 +6,7 @@
 **2. List one goal for between now and Labor Day 2023**  
 *Develop a comprehensive skill set that would lead into a senior or leadership role within a company.*  
 
-**3. Choose a role for your capstone:
+**3. Choose a role for your capstone:**
 - [ ] DA Data Analyst
 - [X] DS Data Scientist
 - [ ] DE Data Engineer
