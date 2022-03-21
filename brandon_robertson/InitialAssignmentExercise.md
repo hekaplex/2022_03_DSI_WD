@@ -17,4 +17,6 @@
 
 **4. List first idea of goals for capstone**  
 - Be able to provide tangible data for marketing executives based on predictive analytics for campaign design and launches.  
-- Possible integration of machine learning for which colors and shapes of graphical ads get clicked on most frequently based off recognition technology.
+- Possible integration of machine learning for which colors and shapes of graphical ads get clicked on most frequently based off recognition technology.  
+
+<sup>[This was created using an awesome markdown editor and then uploaded.](https://jbt.github.io/markdown-editor/)</sup>
