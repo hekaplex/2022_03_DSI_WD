@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:exceptions xmlns:ns2="http://www.w3schools.com">
+<exception>
+	<Month>January</Month>
+	<Category>2Day</Category>
+	<Exceptions>14</Exceptions>
+</exception>
+<exception>
+	<Month>January</Month>
+	<Category>3Day</Category>
+	<Exceptions>3</Exceptions>
+</exception>
+<exception>
+	<Month>January</Month>
+	<Category>Ground</Category>
+	<Exceptions>7</Exceptions>
+</exception>
+<exception>
+	<Month>January</Month>
+	<Category>Overnight</Category>
+	<Exceptions>1</Exceptions>
+</exception>
+<exception>
+	<Month>January</Month>
+	<Category>PriorityOvernight</Category>
+	<Exceptions>0</Exceptions>
+</exception>
+<exception>
+	<Month>February</Month>
+	<Category>2Day</Category>
+	<Exceptions>9</Exceptions>
+</exception>
+<exception>
+	<Month>February</Month>
+	<Category>3Day</Category>
+	<Exceptions>2</Exceptions>
+</exception>
+<exception>
+	<Month>February</Month>
+	<Category>Ground</Category>
+	<Exceptions>20</Exceptions>
+</exception>
+<exception>
+	<Month>February</Month>
+	<Category>Overnight</Category>
+	<Exceptions>10</Exceptions>
+</exception>
+<exception>
+	<Month>February</Month>
+	<Category>PriorityOvernight</Category>
+	<Exceptions>0</Exceptions>
+</exception>
+
+</ns2:exceptions>
