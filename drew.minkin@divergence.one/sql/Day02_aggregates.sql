@@ -434,6 +434,22 @@ SELECT VendorID, InvoiceDate, InvoiceTotal,
     AVG(InvoiceTotal) OVER (PARTITION BY VendorID) AS VendorAvg
 FROM Invoices;
 
+SELECT InvoiceDate,
+    SUM(InvoiceTotal)   SUMInvoiceTotal,
+    COUNT(InvoiceTotal) COUNTInvoiceTot,
+    AVG(InvoiceTotal)   AVGInvoiceTotal
+FROM Invoices
+GROUP BY InvoiceDate
+/*
+InvoiceDate	SUMInvoiceTotal	COUNTInvoiceTot	AVGInvoiceTotal
+2015-12-08 00:00:00	3813.33	1	3813.33
+2015-12-10 00:00:00	40.20	1	40.20
+2015-12-13 00:00:00	138.75	1	138.75
+2015-12-16 00:00:00	202.95	3	67.65
+2015-12-21 00:00:00	172.50	1	172.50
+2015-12-24 00:00:00	739.62	3	246.54
+*/
+
 
 SELECT InvoiceNumber, InvoiceDate, InvoiceTotal,
     SUM(InvoiceTotal) OVER (PARTITION BY InvoiceDate) AS DailyCumulativeTotal,
@@ -448,7 +464,8 @@ SELECT InvoiceNumber, TermsID, InvoiceDate, InvoiceTotal,
     SUM(InvoiceTotal)	OVER (PARTITION BY TermsID ORDER BY InvoiceDate ) AS ByTermsIDCumulativeTotal,
     COUNT(InvoiceTotal) OVER (PARTITION BY TermsID ORDER BY InvoiceDate ) AS ByTermsIDInvoiceCount,
     AVG(InvoiceTotal)	OVER (PARTITION BY TermsID ORDER BY InvoiceDate ) AS ByTermsIDAvg,
-	InvoiceTotal/SUM(InvoiceTotal)	OVER (PARTITION BY TermsID ORDER BY InvoiceDate ) AS PctOfDailySalesByTermsID
+	InvoiceTotal/SUM(InvoiceTotal)	OVER (PARTITION BY TermsID ORDER BY InvoiceDate ) AS PctOfDailySalesByTermsID,
+	InvoiceTotal/SUM(InvoiceTotal)	OVER (PARTITION BY TermsID) AS PctOfSalesByTermsID
 FROM Invoices
-ORDER BY TermsID;
+ORDER BY TermsID, InvoiceDate;
 
