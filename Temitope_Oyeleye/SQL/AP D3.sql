@@ -130,11 +130,11 @@ WHERE NOT EXISTS
 			Invoices AS I
 		WHERE
 			I.VendorID = V.VendorID
-	)
+	);
 --Common Table Expression (CTE)
 WITH
 	Summary
-	--All vendors per state
+	--All vendors State
 		AS
 		(
 		SELECT
@@ -173,16 +173,17 @@ WITH
 			TopInState T
 			on
 			S.VendorState = T.VendorState
-
+;
+USE Examples;
 --recursive CTE
 WITH
 	EmployeesCTE
 		AS
 			(
-				--root of hierarchy
+				--Root of Hierarchy
 				SELECT 
 					EmployeeID
-					,FirstName +  '+LastName As [Employee Name]
+					,FirstName + ' '+LastName As [Employee Name]
 					, 1 AS [Rank]
 					from Employees
 					WHERE ManagerID IS NULL
