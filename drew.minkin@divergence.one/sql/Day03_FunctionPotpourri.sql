@@ -230,6 +230,7 @@ SELECT
 [RepID]
 , [SalesYear]
 , [SalesTotal]
+--LastSales = For a given RepID, Look at 1 previous SalesYear's SalesTotal back in time
 , LAG([SalesTotal],1,0) 
 	OVER 
 		(
@@ -238,6 +239,7 @@ SELECT
 			) 
 	As LastSales
 , 
+--ChangeFromLastSales = For RepID, Current Year's SalesTotal- LastSales (Last Year's SalesTotal)
 	[SalesTotal] 
 	- LAG([SalesTotal],1,0) 
 		OVER 
@@ -247,13 +249,16 @@ SELECT
 			) 
 	As ChangeFromLastSales
 , 
+--PctChangeFromLastSales = (Current Year's SalesTotal - LastSales )/LastSales 
 IIF(
-	LAG([SalesTotal],1,0) 
+	--check for divide by 0
+			LAG([SalesTotal],1,0) 
 			OVER 
 				(
 					PARTITION BY [RepID] 
 					ORDER BY [SalesYear]
-				) != 0,
+				) 
+					!= 0,
 		(
 		[SalesTotal] 
 		- LAG([SalesTotal],1,0)
@@ -276,13 +281,15 @@ IIF(
 	As PctChangeFromLastSales
 ,PERCENT_RANK() OVER (PARTITION BY [SalesYear] ORDER BY [SalesTotal]) AS PctRank
 ,CUME_DIST() OVER (PARTITION BY [SalesYear] ORDER BY [SalesTotal]) AS CumeDist
+
 ,CUME_DIST() OVER (ORDER BY [SalesTotal]) AS CumeDistHistorical
 ,NTILE(4) OVER (ORDER BY [SalesTotal]) AS CumeDistHistoricalQuartile
 ,NTILE(100) OVER (ORDER BY [SalesTotal]) AS CumeDistHistoricalPercentile
 --median = 50 percentile
 ,PERCENTILE_CONT(.5) WITHIN GROUP (ORDER BY [SalesTotal]) OVER (PARTITION BY 1) AS PctContHistorical
-,PERCENTILE_CONT(.5) WITHIN GROUP (ORDER BY [SalesTotal]) OVER (PARTITION BY [SalesYear]) AS YearlyMedianContinuous
 ,PERCENTILE_DISC(.5) WITHIN GROUP (ORDER BY [SalesTotal]) OVER (PARTITION BY 1) AS PctDISCHistorical
+,PERCENTILE_CONT(.5) WITHIN GROUP (ORDER BY [SalesTotal]) OVER (PARTITION BY [SalesYear]) AS YearlyMedianContinuous
 ,PERCENTILE_DISC(.5) WITHIN GROUP (ORDER BY [SalesTotal]) OVER (PARTITION BY [SalesYear]) AS YearlyMedianDISC
+
  FROM SalesTotals
- ORDER BY RepID, [SalesYear]
+ ORDER BY  SalesTotal
