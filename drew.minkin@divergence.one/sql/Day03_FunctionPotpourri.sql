@@ -192,3 +192,97 @@ SELECT
 	,ROW_NUMBER() OVER ( ORDER BY VendorState ) As RowNum_State
 	,ROW_NUMBER() OVER ( PARTITION BY VendorState ORDER BY VendorName) As RowNumber
 FROM Vendors
+
+--
+SELECT
+	TermsDescription
+	,TermsID
+	,NTILE(2) OVER (ORDER BY TermsID) As Tile2
+	,NTILE(3) OVER (ORDER BY TermsID) As Tile3
+	,NTILE(4) OVER (ORDER BY TermsID) As Tile4
+FROM Terms
+;
+WITH
+	InvTile
+	AS
+	(SELECT
+		InvoiceTotal
+		,NTILE(3) OVER (ORDER BY InvoiceTotal) As InvoiceTotalTile
+	FROM 
+		Invoices	
+	)
+SELECT
+	InvoiceTotalTile
+	,MIN(InvoiceTotal) as MIN_InvoiceTotal
+	,AVG(InvoiceTotal) as AVG_InvoiceTotal
+	,STDEV(InvoiceTotal) as STD_InvoiceTotal
+	,MAX(InvoiceTotal) as MAX_InvoiceTotal
+	,COUNT(*) As invQty
+
+FROM	
+	InvTile
+GROUP BY InvoiceTotalTile
+Order by 1 DESC
+
+USE Examples
+GO
+SELECT 
+[RepID]
+, [SalesYear]
+, [SalesTotal]
+, LAG([SalesTotal],1,0) 
+	OVER 
+		(
+			PARTITION BY [RepID] 
+			ORDER BY [SalesYear]
+			) 
+	As LastSales
+, 
+	[SalesTotal] 
+	- LAG([SalesTotal],1,0) 
+		OVER 
+			(
+				PARTITION BY [RepID] 
+				ORDER BY [SalesYear]
+			) 
+	As ChangeFromLastSales
+, 
+IIF(
+	LAG([SalesTotal],1,0) 
+			OVER 
+				(
+					PARTITION BY [RepID] 
+					ORDER BY [SalesYear]
+				) != 0,
+		(
+		[SalesTotal] 
+		- LAG([SalesTotal],1,0)
+			OVER 
+				(
+					PARTITION BY [RepID] 
+					ORDER BY [SalesYear]
+				)
+		)
+		/
+			LAG([SalesTotal],1,0) 
+			OVER 
+				(
+					PARTITION BY [RepID] 
+					ORDER BY [SalesYear]
+				)
+	,
+	NULL
+	)
+	As PctChangeFromLastSales
+,PERCENT_RANK() OVER (PARTITION BY [SalesYear] ORDER BY [SalesTotal]) AS PctRank
+,CUME_DIST() OVER (PARTITION BY [SalesYear] ORDER BY [SalesTotal]) AS CumeDist
+,CUME_DIST() OVER (ORDER BY [SalesTotal]) AS CumeDistHistorical
+,NTILE(4) OVER (ORDER BY [SalesTotal]) AS CumeDistHistoricalQuartile
+,NTILE(100) OVER (ORDER BY [SalesTotal]) AS CumeDistHistoricalPercentile
+--median = 50 percentile
+,PERCENTILE_CONT(.5) WITHIN GROUP (ORDER BY [SalesTotal]) OVER (PARTITION BY 1) AS PctContHistorical
+,PERCENTILE_CONT(.5) WITHIN GROUP (ORDER BY [SalesTotal]) OVER (PARTITION BY [SalesYear]) AS YearlyMedianContinuous
+,PERCENTILE_DISC(.5) WITHIN GROUP (ORDER BY [SalesTotal]) OVER (PARTITION BY 1) AS PctDISCHistorical
+,PERCENTILE_DISC(.5) WITHIN GROUP (ORDER BY [SalesTotal]) OVER (PARTITION BY [SalesYear]) AS YearlyMedianDISC
+ FROM SalesTotals
+ ORDER BY RepID, [SalesYear]
