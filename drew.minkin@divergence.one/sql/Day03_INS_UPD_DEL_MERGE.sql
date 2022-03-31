@@ -2,67 +2,67 @@ USE AP;
 
 IF OBJECT_ID('InvoiceCopy') IS NOT NULL 
 	DROP TABLE InvoiceCopy
-
+;
 --SELECT...INTO
 SELECT 
 	*
 INTO InvoiceCopy
 FROM Invoices
-
+;
 SELECT OBJECT_ID('InvoiceCopy')
-
+;
 SELECT COUNT(*) FROM InvoiceCopy
-
+;
 --INSERT Single row 
 INSERT INTO InvoiceCopy
 VALUES
 --[InvoiceID], [VendorID], [InvoiceNumber], [InvoiceDate], [InvoiceTotal], [PaymentTotal], [CreditTotal], [TermsID], [InvoiceDueDate], [PaymentDate]
  (97, '456789', '2020-03-01', 8344.50, 0, 0, 1, '2020-03-31', NULL);
-
+;
  SELECT * FROM InvoiceCopy
-
+ ;
  INSERT INTO InvoiceCopy
 VALUES
 --[InvoiceID], [VendorID], [InvoiceNumber], [InvoiceDate], [InvoiceTotal], [PaymentTotal], [CreditTotal], [TermsID], [InvoiceDueDate], [PaymentDate]
  (98, '456789', '2022-03-31', 8344.50, 0, 0, 1, '2022-03-31', NULL);
-
+ ;
   INSERT INTO InvoiceCopy
   ([VendorID], [InvoiceNumber], [InvoiceTotal], [PaymentTotal], [CreditTotal], [TermsID], [InvoiceDueDate],[InvoiceDate],  [PaymentDate])
   VALUES (99, '456789',  4747.50, 0, 0, 1, '2022-03-31', '2022-03-31',NULL);
-
+  ;
   SELECT * FROM InvoiceCopy
-
+  ;
   --MULTIROW INSERT
  INSERT INTO InvoiceCopy
 VALUES
     (95, '111-10098', '2020-03-01', 219.50, 0, 0, 1, '2020-03-31', NULL),
     (102, '109596', '2020-03-01', 22.97, 0, 0, 1, '2020-03-31', NULL),
     (72, '40319', '2020-03-01', 173.38, 0, 0, 1, '2020-03-31', NULL); 
-
+;
 --INSERT SELECT
 --SET IDENTITY_INSERT Invoices OFF
 INSERT INTO Invoices
 SELECT [VendorID], [InvoiceNumber], [InvoiceDate], [InvoiceTotal], [PaymentTotal], [CreditTotal], [TermsID], [InvoiceDueDate], [PaymentDate] FROM InvoiceCopy
 EXCEPT
 SELECT [VendorID], [InvoiceNumber], [InvoiceDate], [InvoiceTotal], [PaymentTotal], [CreditTotal], [TermsID], [InvoiceDueDate], [PaymentDate] FROM Invoices
-
+;
 --SELECT INTO Metadata Only
 SELECT 
 	*
 INTO InvoiceEmpty
 FROM Invoices
 WHERE 1 =2
-
+;
 select * from InvoiceEmpty
-
+;
 INSERT INTO InvoiceEmpty
 SELECT [VendorID], [InvoiceNumber], [InvoiceDate], [InvoiceTotal], [PaymentTotal], [CreditTotal], [TermsID], [InvoiceDueDate], [PaymentDate] 
 FROM InvoiceCopy
 
 --UPDATE Simple
-
+;
 SELECT * from InvoiceCopy
-
+;
 --BEGIN TRAN
 UPDATE 
 	InvoiceCopy
@@ -74,18 +74,18 @@ WHERE
 	InvoiceNumber = '97/522'
 --ROLLBACK --(undo)
 --COMMIT
-
+;
 SELECT VendorID	,LastName	,FirstName FROM ContactUpdates	
 EXCEPT
 SELECT VendorID	,[VendorContactLName], [VendorContactFName] FROM VendorCopy
-
+;
 SELECT 
 	* 
 INTO
 	VendorCopy
 FROM 
 	Vendors
-
+;
 --preflightcheck
 SELECT
 	vc.[VendorContactLName]
@@ -98,6 +98,7 @@ FROM
 		ContactUpdates vs
 			ON
 				vc.VendorID = vs.VendorID
+;
 --Complex UPDATE
 UPDATE
 	vc
@@ -110,7 +111,7 @@ FROM
 		ContactUpdates vs
 			ON
 				vc.VendorID = vs.VendorID
-
+;
 --DELETE
 DELETE
 	InvoiceCopy
@@ -124,10 +125,11 @@ WHERE
 			WHERE
 				VendorName = 'Blue Cross'
 		)
+;		
 --ROWCOUNT
 SET ROWCOUNT 0
 Select count(*) from Invoices
-
+;
 --Complex DELETE			
 DELETE
 	ic
@@ -138,7 +140,7 @@ FROM
 				ON	ic.VendorID = vc.VendorID 
 			WHERE
 				vc.VendorName = 'Blue Cross'
-
+;
 --MERGE		
 --SELECT *  FROM [dbo].[InvoiceArchive]
 MERGE INTO InvoiceArchive ia
@@ -163,4 +165,4 @@ WHEN NOT MATCHED BY SOURCE
 	THEN DELETE;
 
 
-SELECT * from InvoiceArchive
+SELECT * from InvoiceArchive;
