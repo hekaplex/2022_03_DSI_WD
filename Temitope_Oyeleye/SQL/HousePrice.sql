@@ -4,4 +4,8 @@ FROM
 Train
 GO
 
-
+SELECT [Id],[LotArea],[OverallQual],[OverallCond],[BedroomAbvGr],[TotRmsAbvGrd],[SalePrice]
+FROM
+Train
+WHERE OverallQual = 10;
+GO
