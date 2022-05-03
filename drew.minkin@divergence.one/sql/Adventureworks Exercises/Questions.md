@@ -3,20 +3,20 @@ _[Adapted from SQLZoo](https://sqlzoo.net/wiki)_
 ### Easy SQL Questions
 
 
-1. How many items with ListPrice more than $1000 have been sold?
+1. How many items with UnitPrice more than $1000 have been sold?
 
-1. Give the CompanyName of those customers with Total orders over $100000. Include the subtotal plus tax plus freight.
+1. Give the Store Name of those customers with Total orders over $100000. Include the subtotal plus tax plus freight.
 
 
 ### Medium SQL Questions
 1. A "Single Item Order" is a customer order where only one item is ordered. Show the SalesOrderID and the UnitPrice for every Single Item Order.
 
-1. Where did the racing socks go? List the product name and the CompanyName for all Customers who ordered ProductModel 'Racing Socks'.
+1. Where did the racing socks go? List the product name and the Store Name for all Customers who ordered ProductModel 'Racing Socks'.
 
 1. Show the product description for culture 'fr' for product with ProductID 736.
 
 
-1. Use the SubTotal value in SaleOrderHeader to list orders from the largest to the smallest. For each order show the CompanyName and the SubTotal and the total weight of the order.
+1. Use the SubTotal value in SaleOrderHeader to list orders from the largest to the smallest. For each order show the Store Name and the SubTotal and the total weight of the order.
 
 1. How many products in ProductCategory 'Components' have been sold to an address in 'London'?
 
