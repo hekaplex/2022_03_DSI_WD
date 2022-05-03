@@ -3,7 +3,7 @@ _[Adapted from SQLZoo](https://sqlzoo.net/wiki)_
 ### Easy SQL Questions
 
 
-1. How many items with UnitPrice more than $1000 have been sold?
+1. How many items with ListPrice more than $1000 have been sold?
 
 1. Give the Store Name of those customers with Total orders over $100000. Include the subtotal plus tax plus freight.
 
