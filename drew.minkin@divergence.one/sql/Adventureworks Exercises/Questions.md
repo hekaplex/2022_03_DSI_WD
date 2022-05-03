@@ -5,13 +5,13 @@ _[Adapted from SQLZoo](https://sqlzoo.net/wiki)_
 
 1. How many items with ListPrice more than $1000 have been sold?
 
-1. Give the CompanyName of those customers with Total orders over $100000. Include the subtotal plus tax plus freight.
+1. Give the Store Name of those customers with Total orders over $100000. Include the subtotal plus tax plus freight.
 
 
 ### Medium SQL Questions
 1. A "Single Item Order" is a customer order where only one item is ordered. Show the SalesOrderID and the UnitPrice for every Single Item Order.
 
-1. Where did the racing socks go? List the product name and the CompanyName for all Customers who ordered ProductModel 'Racing Socks'.
+1. Where did the racing socks go? List the product name and the Store Name for all Customers who ordered ProductModel 'Racing Socks'.
 
 1. Show the product description for culture 'fr' for product with ProductID 736.
 
