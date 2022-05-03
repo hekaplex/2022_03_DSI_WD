@@ -16,7 +16,7 @@ _[Adapted from SQLZoo](https://sqlzoo.net/wiki)_
 1. Show the product description for culture 'fr' for product with ProductID 736.
 
 
-1. Use the SubTotal value in SaleOrderHeader to list orders from the largest to the smallest. For each order show the CompanyName and the SubTotal and the total weight of the order.
+1. Use the SubTotal value in SaleOrderHeader to list orders from the largest to the smallest. For each order show the Store Name and the SubTotal and the total weight of the order.
 
 1. How many products in ProductCategory 'Components' have been sold to an address in 'London'?
 
