@@ -1,4 +1,4 @@
-## Adventureworks SQL Exercises
+## Adventureworks2019 SQL Exercises
 _[Adapted from SQLZoo](https://sqlzoo.net/wiki)_
 ### Easy SQL Questions
 
