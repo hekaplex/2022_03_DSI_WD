@@ -8,7 +8,7 @@ _[Adapted from SQLZoo](https://sqlzoo.net/wiki)_
 
 1. How many items with ListPrice more than $1000 have been sold?
 
-1. Give the Sales Territory Region Name of those customers with Total orders over $100000. Include the subtotal plus tax plus freight.
+1. Give the Sales Territory Region Name of those customers with Total orders for the region over $100000. Include the subtotal plus tax plus freight.
 
 
 ### Medium SQL Questions
