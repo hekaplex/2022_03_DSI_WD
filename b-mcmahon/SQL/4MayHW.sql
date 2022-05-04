@@ -16,7 +16,7 @@ WHERE UnitPrice > 1000;
 */
 --There is no store name associated with internet sales (which have the freight charges), I just went with the Customerkey
 SELECT customerkey, (SUM(SalesAmount)+SUM(TaxAmt)+SUM(Freight)) AS total_sales
-FROM FactInternetSales JOIN DimReseller 
+FROM FactInternetSales
 GROUP BY CustomerKey
 ORDER BY total_sales DESC;
 
@@ -38,7 +38,7 @@ WHERE EnglishProductName LIKE '%racing%';
 /* 
 5. Show the product description for culture 'fr' for product with ProductID 736.
 */
---Rertuns nothing
+--Returns nothing
 SELECT FrenchDescription
 FROM DimProduct
 WHERE ProductKey = 736
