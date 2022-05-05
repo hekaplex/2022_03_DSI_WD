@@ -44,6 +44,6 @@ C) Sum of OrderQty*ListPrice
 
 1. List the name and addresses of companies containing the word 'Bike' (upper or lower case) and companies containing 'cycle' (upper or lower case). Ensure that the 'bike's are listed before the 'cycles's.
 
-1. Show the total order value for each Country/Region. List by value with the highest first.
+1. Show the total order value for each Sales Territory Region. List by value with the highest first.
 
-1. Find the best customer in each Country/Region.    
+1. Find the best customer in each Sales Territory Region.    
