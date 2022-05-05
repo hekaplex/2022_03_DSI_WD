@@ -66,6 +66,9 @@ C) Sum of OrderQty*ListPrice
     | 100- 999 | |
     | 1000-9999 | |
     | 10000+ | |
+> 1. Aggreate SalesAmount by SalesOrderNumber
+> 1. Create a RANGE column
+> 1. Aggregate to count and sort by RANGE
 
 1. List the name and addresses of companies containing the word 'Bike' (upper or lower case) and companies containing 'cycle' (upper or lower case). Ensure that the 'bike's are listed before the 'cycles's.
 
