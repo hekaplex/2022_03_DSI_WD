@@ -7,37 +7,46 @@ _[Adapted from SQLZoo](https://sqlzoo.net/wiki)_
 ### Easy SQL Questions
 
 1. How many items with ListPrice more than $1000 have been sold?
-    Step 1: union Internet & reseller sales
-    Step 2: filter  > 1000 on OrderlineNumber
-    Step 3: count total ordernumber+orderlinenumber
+    >1.  Union Internet & reseller sales
+    >1.  Filter  > 1000 on OrderlineNumber
+    >1.  Count total ordernumber+orderlinenumber
 
 
 1. Give the Sales Territory Region Name with Total orders for the region over $100000. Include the subtotal plus tax plus freight.
 
-    Step 1: union Internet & reseller sales
-    Step 2: Add tax + frieght to Order Amount per order
-    Step 3: Join with Sales Territory 
-    Step 4: Aggregate by terrotory region
-    Step 5: Filter for orders > $10000
+   > 1. Union Internet & reseller sales
+   > 1. Add tax + freight to Order Amount per order
+   > 1. Join with Sales Territory 
+   > 1. Aggregate by terrotory region
+   > 1. Filter for orders > $10000
 
 1. A "Single Item Order" is a customer order where only one item is ordered. Show the SalesOrderNumber and the UnitPrice for every Single Item Order.
-    Step 1: union Internet & reseller sales
-    Step 2: aggrgate SalesOrderNumber for SUm of salesAmount and use HAVING for Count(*) = 1
+    > 1. Union Internet & reseller sales
+    > 1. Aggregate SalesOrderNumber for SUm of salesAmount and use HAVING for Count(*) = 1
 
 1. Show the French product description for product with Product alternate key 'FR-M94S-42'.
+    > 1. Filter Product table
 
 ### Medium SQL Questions
 
 1. Where did the racing socks go? List the product name and the State for all Customers, total orders and total amount of product  'Racing Socks' sold who ordered ProductModel 'Racing Socks' for Internet sales.
 
-    Step 1: Join Geography, Customers, Internet Sales and Product
-    Step 2: filter for models with 'Racing Socks' using LIKE
-    Step 3: Aggregate by State 
+    > 1. Join Geography, Customers, Internet Sales and Product
+    > 1. Filter for models with 'Racing Socks' using LIKE
+    > 1. Aggregate by State 
 
 
-1. Use the SubTotal value in SaleOrderHeader to list orders from the largest to the smallest. For each order show the State/Province Name and the SubTotal and the total weight of the order.
+1. Use the SubTotal value in Internet Sales to list orders from the largest to the smallest. For each order show the State/Province Name and the SubTotal and the total weight of the order.
 
-1. How many products in ProductCategory 'Components' have been sold to an address in 'London'?
+    > 1. Join with Customer and Geography to get to State and product weight
+    > 1. Aggregate to sum by 
+    > 1. Order the SalesAmount descending
+
+1. How many products via Internet in ProductCategory 'Components' have been sold to an address in 'London' in UK?
+
+    > 1. Join Sales to Customer, Geography, produc and Category
+    > 1. Filter by Category, Country  and City
+    > 1. Aggregate to count 
 
 ### Hard SQL Questions
 1. For every customer with a 'Main Office' in Dallas show AddressLine1 of the 'Main Office' and AddressLine1 of the 'Shipping' address - if there is no shipping address leave it blank. Use one row per customer.
