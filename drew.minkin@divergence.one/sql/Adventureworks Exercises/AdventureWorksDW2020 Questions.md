@@ -7,16 +7,32 @@ _[Adapted from SQLZoo](https://sqlzoo.net/wiki)_
 ### Easy SQL Questions
 
 1. How many items with ListPrice more than $1000 have been sold?
+    Step 1: union Internet & reseller sales
+    Step 2: filter  > 1000 on OrderlineNumber
+    Step 3: count total ordernumber+orderlinenumber
 
-1. Give the Sales Territory Region Name of those customers with Total orders for the region over $100000. Include the subtotal plus tax plus freight.
 
+1. Give the Sales Territory Region Name with Total orders for the region over $100000. Include the subtotal plus tax plus freight.
 
-### Medium SQL Questions
+    Step 1: union Internet & reseller sales
+    Step 2: Add tax + frieght to Order Amount per order
+    Step 3: Join with Sales Territory 
+    Step 4: Aggregate by terrotory region
+    Step 5: Filter for orders > $10000
+
 1. A "Single Item Order" is a customer order where only one item is ordered. Show the SalesOrderNumber and the UnitPrice for every Single Item Order.
-
-1. Where did the racing socks go? List the product name and the Store Name for all Customers who ordered ProductModel 'Racing Socks'.
+    Step 1: union Internet & reseller sales
+    Step 2: aggrgate SalesOrderNumber for SUm of salesAmount and use HAVING for Count(*) = 1
 
 1. Show the French product description for product with Product alternate key 'FR-M94S-42'.
+
+### Medium SQL Questions
+
+1. Where did the racing socks go? List the product name and the State for all Customers, total orders and total amount of product  'Racing Socks' sold who ordered ProductModel 'Racing Socks' for Internet sales.
+
+    Step 1: Join Geography, Customers, Internet Sales and Product
+    Step 2: filter for models with 'Racing Socks' using LIKE
+    Step 3: Aggregate by State 
 
 
 1. Use the SubTotal value in SaleOrderHeader to list orders from the largest to the smallest. For each order show the State/Province Name and the SubTotal and the total weight of the order.
