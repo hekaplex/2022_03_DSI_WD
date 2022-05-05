@@ -74,4 +74,8 @@ C) Sum of OrderQty*ListPrice
 
 1. Show the total order value for each Sales Territory Region. List by value with the highest first.
 
-1. Find the best customer in each Sales Territory Region.    
+1. Find the best customer in each Sales Territory Region in Internet Sales.  
+> 1. Join Customer and Sales Territory with Sales
+> 1. Aggregate at the grain of company and territory the sum of all sales
+> 1. Create a ROW_NUMBER() column called TerritoryRank paritioned by Terrotory ordered by total sales
+> 1. Filter where TerritoryRank = 1   
