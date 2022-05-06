@@ -129,8 +129,21 @@ WHERE englishproductcategoryname = 'Components' AND city = 'London'
 
 /*
 ### Hard SQL Questions
-1. For every customer with a 'Main Office' in Dallas show AddressLine1 of the 'Main Office' and AddressLine1 of the 'Shipping' address - if there is no shipping address leave it blank. Use one row per customer.
+1. For every Internet customer in the city of Chula Vista, CA show AddressLine1 - if there is no shipping address leave it blank. Use one row per customer.
+    > 1. Join internet, Customer and Geography
+    > 1. filter by Geogrpy city and state
+    > 1. Use an ISNULL on shpping address columns to get a blank instead of NULL
 */
+SELECT
+    CASE
+		WHEN dg.city = 'Chula Vista' THEN dc.AddressLine1
+		WHEN dg.city = NULL THEN ''
+	END
+FROM DimCustomer dc
+    JOIN DimGeography dg ON dc.geographykey = dg.geographykey
+    JOIN FactInternetSales fis ON dc.CustomerKey = fis.CustomerKey
+WHERE dg.City = 'Chula Vista' AND dg.StateProvinceName = 'CA'
+ORDER BY City, StateProvinceName;
 
 /*
 2. For each order show the SalesOrderNumber and SubTotal calculated three ways:
@@ -150,3 +163,4 @@ C) Sum of OrderQty*ListPrice
 6. Show the total order value for each Country/Region. List by value with the highest first.
 7. Find the best customer in each Country/Region.    
 */
+
