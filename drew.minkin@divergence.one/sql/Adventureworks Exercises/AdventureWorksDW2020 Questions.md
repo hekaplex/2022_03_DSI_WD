@@ -54,16 +54,15 @@ _[Adapted from SQLZoo](https://sqlzoo.net/wiki)_
     > 1. filter by Geogrpy city and state
     > 1. Use an ISNULL on shpping address columns to get a blank instead of NULL
 
+
 1. For each order show the SalesOrderNumber and SubTotal calculated three ways:
     > All three require a union of internet and resller sales and an aggregate
     1. From the SalesOrderNumber
-
     > This is a straight grouping by this columne
     2. Sum of OrderQty*UnitPrice
     > This is a aggregate of the sum of these products of each line number
     3. Sum of OrderQty*ListPrice
     > This requires a join with Product
-
     Extra Credit - Join all three calculations into one table
 
 1. Show the best selling ProductSubCategory by reason for sale.
