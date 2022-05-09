@@ -10,11 +10,11 @@
     * Tuples
     * Sets
     * Dictionaries
-* Functions
+* Functions and Other strictuee
+ * Pointers
+ * Comprehensions
 * Control Flow
     * For Loop
     * While Loop
- * Pointers
  * Exception Handling
  * File I/O
- * Comprehensions
