@@ -1,5 +1,0 @@
-groceries
-egg
-milk
-onion
-bread
