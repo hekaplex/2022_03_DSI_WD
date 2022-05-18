@@ -3,10 +3,10 @@ Things vary between ML modleing production runs
     * Adding new features
     * Normalization techniques
     * Manual binning
-    * Transforms ( log/exponent, etc.)
+    * Transforms (log/exponent, etc.)
     * Ratios
 * Sampling strategies
-    * Balancing ( binary classification)
+    * Balancing (binary classification)
     * Changing holdout (train/test) ratios
     * Changing seeds
     * Cross validation
