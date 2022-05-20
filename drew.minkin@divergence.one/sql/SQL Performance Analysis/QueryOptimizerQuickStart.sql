@@ -16,7 +16,7 @@ select * from sys.indexes
 
 select 
 	d.* from FactFinance f
-join DimAccount d
+ inner merge join DimAccount d
 on d.AccountKey
 = f.AccountKey
 where
