@@ -1,5 +1,5 @@
 # install using the command in the Python environment directory:
-#           pip install -r requirements.txt
+#           pip install -r powerbi_requirements.txt
 python == 3.7
 matplotlib == 3.2.1
 numpy == 1.*
